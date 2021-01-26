@@ -4,8 +4,13 @@ O projeto inicial é um cadastro de usuários em memória muito simples e sem ut
 
 ### Rodando o projeto
 
-`node src/index.js`
+```ssh
+npm i
+npm run dev
+```
+### Rodando Testes
 
+`npm run test`
 ## O que será avaliado?
 
 A idéia é deixar o candidato bem livre pra reimplementar o código da maneira que mais lhe for conveniente e que mais demonstre suas habilidades. Está liberado o uso de libs de terceiros, bancos de dados, autenticação, etc.

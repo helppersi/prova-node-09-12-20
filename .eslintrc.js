@@ -4,6 +4,9 @@ module.exports = {
 		es2020: true,
 		node: true,
 	},
+	globals: {
+		jest: true,
+	},
 	extends: ['airbnb-base', 'prettier'],
 	plugins: ['prettier'],
 	parserOptions: {

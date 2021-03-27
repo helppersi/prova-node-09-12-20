@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const { MongoMemoryServer } = require('mongodb-memory-server');
 
 require('dotenv').config();
 
@@ -22,6 +23,22 @@ class Database {
 			console.error.bind(console, `Erro na conexão: ${error}`)
 		);
 	}
+
+	// async connectMongoMemoryServer() {
+	// 	const server = new MongoMemoryServer();
+
+	// 	const url = await server.getUri();
+
+	// 	mongoose.connect(url, {
+	// 		useUnifiedTopology: true,
+	// 		useNewUrlParser: true,
+	// 		useCreateIndex: true,
+	// 	});
+	// }
+
+	// async disconnect() {
+	// 	await mongoose.connection.close();
+	// }
 }
 
 module.exports = new Database();

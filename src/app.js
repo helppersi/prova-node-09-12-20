@@ -5,7 +5,7 @@ const path = require('path');
 // Database
 const database = require('./database');
 // Routes
-const { Auth, User } = require('./routes');
+const routes = require('./routes');
 
 require('dotenv').config();
 
@@ -13,7 +13,9 @@ class App {
 	constructor() {
 		this.server = express();
 
-		database.createConnection();
+		if (process.env.NODE_ENV !== 'test') {
+			database.createConnection();
+		}
 
 		this.middlewares();
 		this.routes();
@@ -23,15 +25,15 @@ class App {
 		this.server.use(express.json());
 		this.server.use(express.urlencoded({ extended: true }));
 
-		// Caso queira deixar algum arquivo online na api: PDF, Imagem ou Video => link_da_api/files/nome_do_arquivo.extensao
+		/* Caso queira deixar algum arquivo online na api: PDF,
+		   Imagem ou Video => link_da_api/files/nome_do_arquivo.extensao
+		*/
 		this.server.use(
 			'/files',
 			express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
 		);
 
-		const allowedOrigins = [
-			'http://localhost:3000',
-		];
+		const allowedOrigins = ['http://localhost:3000'];
 
 		this.server.use(
 			cors({
@@ -51,12 +53,11 @@ class App {
 				},
 			})
 		);
-
 	}
 
 	routes() {
-		this.server.use(Auth);
-		this.server.use(User);
+		this.server.use(routes.SessionRoute);
+		this.server.use(routes.UserRoute);
 	}
 }
 

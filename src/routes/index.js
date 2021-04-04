@@ -1,4 +1,4 @@
-const Auth = require('./Auth');
-const User = require('./User');
+const SessionRoute = require('./SessionRoute');
+const UserRoute = require('./UserRoute');
 
-module.exports = { Auth, User };
+module.exports = { SessionRoute, UserRoute };

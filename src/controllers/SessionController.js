@@ -4,7 +4,7 @@ const Yup = require('yup');
 
 const User = require('../models/User');
 
-class AuthController {
+class SessionController {
 	async store(req, res) {
 		const { email, password } = req.body;
 
@@ -32,13 +32,15 @@ class AuthController {
 
 			// Dados do Usuário
 			const { _id: id, name, username } = response;
-			
+
 			return res.json({
 				id,
 				email,
 				name,
 				username,
-				token: jwt.sign({ id, username }, process.env.JWT_SECRET, {expiresIn: '7d'}),
+				token: jwt.sign({ id, username }, process.env.JWT_SECRET, {
+					expiresIn: '7d',
+				}),
 			});
 		} catch (err) {
 			return res.status(400).json({ error: err.message });
@@ -46,4 +48,4 @@ class AuthController {
 	}
 }
 
-module.exports = new AuthController();
+module.exports = new SessionController();

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js --ingore __tests__",
-    "test": "jest --runInBand --detectOpenHandles"
+    "start": "set NODE_ENV=production&& node src/server.js",
+    "dev": "set NODE_ENV=development&&nodemon src/server.js --ingore __tests__",
+    "test": "set NODE_ENV=test&& jest --runInBand --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -28,9 +28,11 @@
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "faker": "^5.5.1",
     "jest": "^26.6.3",
     "mongodb-memory-server": "^6.9.6",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "supertest": "^6.1.3"
   }
 }
